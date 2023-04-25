@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { MdClose } from "react-icons/md";
-import { deleteContact } from "../../redux/operations";
+
+import { deleteContact } from "../../redux/contactsSlice";
 import PropTypes from "prop-types";
 
 import css from "./Contact.module.css";
@@ -11,14 +12,12 @@ export const Contact = ({ contact }) => {
     const handleDelete = () => dispatch(deleteContact(contact.id));
 
     return (
-        <div className={css.item}>
-            <img alt={contact.name} src={contact.avatar} />
-            <p className={css.name}>{contact.name}:</p>{" "}
-            <p className={css.number}>{contact.number}</p>
+        <>
+            {contact.name}: <b>{contact.number}</b>
             <button className={css.btn} onClick={handleDelete}>
-                <MdClose size={40} />
+                <MdClose size={24} />
             </button>
-        </div>
+        </>
     );
 };
 Contact.propTypes = {
